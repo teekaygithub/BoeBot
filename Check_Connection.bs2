@@ -1,0 +1,24 @@
+' Check_Connection.BS2
+
+' {$STAMP BS2}                      ' Select BS2 as target module
+' {$PBASIC 2.5}                     ' Select PBASIC 2.5 as language
+
+char VAR Byte                       ' Variable for getting character
+
+PAUSE 1000                          ' Always wait 1 s before serial transmit
+DEBUG "Press any key...", CR        ' User prompt
+
+' Wait 2 s for character from Debug Terminal’s Transmit windowpane.  Jump to
+' Record label if no character received during that time.  Continue to Playback
+' label if character received.
+SERIN 16, 84, 2000, Record, [char]
+
+Playback:                           ' Playback label
+  DEBUG "Playing back..."           ' Debug message indicating playback started
+  ' Report logged data code here    ' Your playback code goes here
+  END                               ' End, don’t record after playback
+
+Record:                             ' Record label
+  DEBUG "Recording..."              ' Message indicates recording started
+  ' Datalogging code here           ' Your datalogging code goes here
+  END

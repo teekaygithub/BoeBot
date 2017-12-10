@@ -1,0 +1,17 @@
+' NAP.BS2
+' The program below lights an LED by placing a low on pin 0. This completes
+' the circuit from +5V, through the LED and resistor, to ground. During the
+' NAP interval, the LED stays lit, but blinks off for a fraction of a second.
+' This blink is caused by the NAP wakeup mechanism.  During wakeup, all pins
+' briefly slip into input mode, effectively disconnecting them from loads.
+
+' {$STAMP BS2}
+
+
+Setup:
+  LOW 0                                 ' turn LED on
+
+Snooze:
+  NAP 4                                 ' nap for 288 ms
+  GOTO Snooze
+  END

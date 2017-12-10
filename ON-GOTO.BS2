@@ -1,0 +1,31 @@
+' ON-GOTO.BS2
+' This program shows how the value of idx controls the destination of the
+' ON...GOTO instruction.
+
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+idx             VAR     Byte
+
+
+Main:
+  DEBUG "idx: ", DEC idx, " "
+  ON idx GOTO Case_0, Case_1, Case_2    ' if idx = 0..2 goto label
+  DEBUG "ON..GOTO target error.", CR    ' message if idx is out of range
+
+Update:
+  idx = idx + 1 // 4                    ' force idx to be 0..3
+  PAUSE 1000
+  GOTO Main
+
+Case_0:
+  DEBUG "Running Case_0 routine", CR
+  GOTO Update
+
+Case_1:
+  DEBUG "Running Case_1 routine", CR
+  GOTO Update
+
+Case_2:
+  DEBUG "Running Case_2 routine", CR
+  GOTO Update

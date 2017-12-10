@@ -1,0 +1,39 @@
+' Robotics with the Boe-Bot - FastIrRoaming.bs2
+' Higher performance IR object detection assisted navigation
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+DEBUG "Program running!"
+
+irDetectLeft   VAR             Bit
+irDetectRight  VAR             Bit
+pulseLeft      VAR             Word
+pulseRight     VAR             Word
+
+FREQOUT 4, 2000, 3000
+
+DO
+  FREQOUT 8, 1, 38500
+  irDetectLeft = IN9
+  FREQOUT 2, 1, 38500
+  irDetectRight = IN0
+
+  IF (irDetectLeft = 0) AND (irDetectRight = 0) THEN
+    pulseLeft = 675
+    pulseRight = 850
+  ELSEIF (irDetectLeft = 0) THEN
+    pulseLeft = 850
+    pulseRight = 850
+  ELSEIF (irDetectRight = 0) THEN
+    pulseLeft = 650
+    pulseRight = 650
+  ELSE
+    pulseLeft = 825
+    pulseRight = 650
+  ENDIF
+
+  PULSOUT 13, pulseLeft
+  PULSOUT 12, pulseRight
+  PAUSE 15
+
+LOOP

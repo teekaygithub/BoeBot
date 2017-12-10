@@ -1,0 +1,29 @@
+' Robotics with the Boe-Bot - TestWhiskers.bs2
+' Display what the I/O pins connected to the whiskers sense.
+' Upon whisker contact, the LEDs will now flash.
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+DEBUG "WHISKER STATES", CR,
+      "Left     Right", CR,
+      "------   ------"
+
+DO
+  DEBUG CRSRXY, 0, 3,
+        "P5 = ", BIN1 IN5,
+        "   P7 = ", BIN1 IN7
+  PAUSE 50
+
+  IF (IN7 = 0) THEN
+    HIGH 1
+  ELSE
+    LOW 1
+  ENDIF
+
+  IF (IN5 = 0) THEN
+    HIGH 10
+  ELSE
+    LOW 10
+  ENDIF
+
+LOOP

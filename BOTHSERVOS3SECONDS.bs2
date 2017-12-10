@@ -1,0 +1,23 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+DEBUG "Program Running!", CR
+
+counter VAR Byte
+
+DEBUG "Forward motion", CR
+FOR counter = 1 TO 122
+  PULSOUT 13, 850
+  PULSOUT 12, 650
+  PAUSE 20
+NEXT
+
+DEBUG "Reverse motion", CR
+FOR counter = 1 TO 122
+  PULSOUT 13, 650
+  PULSOUT 12, 850
+  PAUSE 20
+NEXT
+
+DEBUG "Program complete."
+END

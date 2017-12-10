@@ -1,0 +1,45 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+
+DEBUG "Program Running!"
+
+pulseCount VAR Word
+
+' ----[ Initialization ] ------------------------------
+
+FREQOUT 4, 2000, 3000
+
+' ----[ Main Routine ] --------------------------------
+
+'Ramp up forward
+
+FOR pulseCount = 1 TO 100
+
+  PULSOUT 13, 750 + pulseCount
+  PULSOUT 12, 750 - pulseCount
+  PAUSE 20
+
+NEXT
+
+' Continue forward for 75 pulses
+
+FOR pulseCount = 1 TO 75
+
+  PULSOUT 13, 850
+  PULSOUT 12, 650
+  PAUSE 20
+
+NEXT
+
+' Ramp down from going forward to a full stop
+
+FOR pulseCount = 100 TO 1
+
+  PULSOUT 13, 750 + pulseCount
+  PULSOUT 12, 750 - pulseCount
+  PAUSE 20
+
+NEXT
+
+END

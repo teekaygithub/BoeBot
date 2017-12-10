@@ -1,0 +1,13 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+DEBUG "Program Running!", CR
+
+counter VAR Word
+
+FOR counter = 1 TO 122
+  PULSOUT 12, 850
+  PAUSE 20
+next
+
+end

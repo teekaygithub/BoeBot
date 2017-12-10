@@ -1,0 +1,68 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+' Robotics with the Boe-Bot - RoamingWithWhiskers.bs2
+' Boe-Bot uses whiskers to detect objects, and navigate around them.
+
+DEBUG "Program Running!"
+
+' VARIABLES -------------------------------------------------------------
+
+pulseCount     VAR         Byte
+
+' INITIALIZATION --------------------------------------------------------
+
+FREQOUT 4, 2000, 3000
+
+' MAIN ROUTINE ----------------------------------------------------------
+
+DO
+  IF (IN5 = 0) AND (IN7 = 0) THEN
+    GOSUB back_up
+    GOSUB turn_left
+    GOSUB turn_left
+  ELSEIF (IN5 = 0) THEN
+    HIGH 10
+    GOSUB back_up
+    GOSUB turn_right
+  ELSEIF (IN7 = 0) THEN
+    HIGH 1
+    GOSUB back_up
+    GOSUB turn_left
+  ELSE
+    LOW 10
+    LOW 1
+    GOSUB forward_pulse
+  ENDIF
+LOOP
+
+' SUBROUTINES ------------------------------------------------------------
+
+forward_pulse:
+  PULSOUT 13, 825
+  PULSOUT 12, 650
+  PAUSE 20
+  RETURN
+
+turn_left:
+  FOR pulseCount = 0 TO 20
+    PULSOUT 13, 650
+    PULSOUT 12, 650
+    PAUSE 20
+  NEXT
+  RETURN
+
+turn_right:
+  FOR pulseCount = 0 TO 20
+    PULSOUT 13, 850
+    PULSOUT 12, 850
+    PAUSE 20
+  NEXT
+  RETURN
+
+back_up:
+  FOR pulseCount = 0 TO 40
+    PULSOUT 13, 675
+    PULSOUT 12, 850
+    PAUSE 20
+  NEXT
+  RETURN

@@ -1,0 +1,26 @@
+' RETURN.BS2
+' This program demonstrates a potential bug caused by allowing a program to
+' "fall into" a subroutine.  The program was intented to indicate that it
+' is "Starting...", then "Executing Subroutine,", then "Returned..." from
+' the subroutine and stop.  Since we left out the END command (indicated in
+' the comments), the program then falls into the subroutine, displays
+' "Executing..." again and then RETURNs to the start of the program and
+' runs continuously in an endless loop.
+
+' {$STAMP BS2}
+
+
+Reset:
+  DEBUG "Starting Program", CR          ' show start-up
+
+Main:
+  PAUSE 1000
+  GOSUB Demo_Sub                        ' call the subroutine
+  PAUSE 1000
+  DEBUG "Returned from Subroutine", CR  ' show that we're back
+  PAUSE 1000
+                                        ' <-- Forgot to put END here
+
+Demo_Sub:
+  DEBUG "  Executing Subroutine", CR    ' show subroutine activity
+  RETURN

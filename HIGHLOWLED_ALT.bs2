@@ -1,0 +1,17 @@
+' Robotics with the Boe-Bot - HIGHLOWLED_ALT.bs2
+' Turn the LED connected to P13 and P12 alternately on/off once every second.
+
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+
+DO
+
+    HIGH 13
+    LOW 12
+    PAUSE 500
+    LOW 13
+    HIGH 12
+    PAUSE 500
+
+LOOP

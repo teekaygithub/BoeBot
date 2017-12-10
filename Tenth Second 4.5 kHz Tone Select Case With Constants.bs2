@@ -1,0 +1,16 @@
+' Tenth Second 4.5 kHz Tone Select Case With Constants.bs2
+' {$STAMP BS2sx}
+' {$PBASIC 2.5}
+
+#SELECT $STAMP
+  #CASE BS2
+    DurFactr  CON 256
+    FreqFactr CON 256
+  #CASE BS2SX
+    DurFactr  CON 640
+    FreqFactr CON 102
+#ENDSELECT
+
+FREQOUT 6, 100*/DurFactr, 4500*/FreqFactr
+
+END

@@ -1,0 +1,22 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+DEBUG "Program Running!", CR
+
+counter VAR Byte
+
+DEBUG "P13 spinning...", CR
+FOR counter = 1 TO 100
+  PULSOUT 13, 850
+  PAUSE 20
+NEXT
+DEBUG "P13 spin complete.", CR
+
+DEBUG "P12 spinning...", CR
+FOR counter = 1 TO 200
+  PULSOUT 12, 850
+  PAUSE 20
+NEXT
+DEBUG "P12 spin complete. Script complete."
+
+END

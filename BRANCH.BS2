@@ -1,0 +1,31 @@
+' BRANCH.BS2
+' This program shows how the value of idx controls the destination of the
+' BRANCH instruction.
+
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+idx             VAR     Nib
+
+
+Main:
+  DEBUG "idx: ", DEC1 idx, " "
+  BRANCH idx, [Task_0, Task_1, Task_2]          ' branch to task
+  DEBUG "BRANCH target error...", CR, CR        ' ... unless out of range
+
+Next_Task:
+  idx = idx + 1 // 4                            ' force idx to be 0..3
+  PAUSE 250
+  GOTO Main
+
+Task_0:
+  DEBUG "BRANCHed to Task_0", CR
+  GOTO Next_Task
+
+Task_1:
+  DEBUG "BRANCHed to Task_1", CR
+  GOTO Next_Task
+
+Task_2:
+  DEBUG "BRANCHed to Task_2", CR
+  GOTO Next_Task

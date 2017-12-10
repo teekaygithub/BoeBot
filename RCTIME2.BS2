@@ -1,0 +1,37 @@
+' RCTIME2.BS2
+' This program illustrates the use of RCTIME as a fast stopwatch. The
+' program energizes a relay coil, then measures how long it takes for the
+' relay contacts to close.  The circuit for this program can be found in
+' the manual. Note that RCTIME doesn't start timing instantly -- as with
+' all PBASIC instructions, it must be fetched from program EEPROM before
+' it can execute.
+
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+Coil            PIN     6
+RC              PIN     7
+
+#SELECT $STAMP
+  #CASE BS2, BS2E, BS2PE
+    Adjust      CON     $200            ' x 2 us per unit
+  #CASE BS2SX
+    Adjust      CON     $0CC            ' x 0.8 us per unit
+  #CASE BS2P, BS2PX
+    Adjust      CON     $0C0            ' x 0.75 us per unit
+#ENDSELECT
+
+result          VAR     Word
+
+
+Main:
+  DO
+    LOW Coil                            ' energize relay coil
+    RCTIME RC, 1, result                ' measure time to contact closure
+    result = result */ Adjust           ' adjust for device
+    DEBUG "Time to close: ",
+          DEC Result, CR
+    HIGH Coil                           ' release relay
+    PAUSE 1000                          ' wait one second
+  LOOP
+  END

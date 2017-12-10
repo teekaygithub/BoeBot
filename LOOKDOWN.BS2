@@ -1,0 +1,28 @@
+' LOOKDOWN.BS2
+' This program uses LOOKDOWN to determine the number of decimal digits in
+' a number. Since LOOKDOWN uses a zero-indexed table, the output will be
+' the number of digits minus one, so this gets corrected in the following
+' line.  Note that zero is considered a valid number and has one digit.
+
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+aNum            VAR     Word            ' random number
+stpSz           VAR     Word            ' FOR-NEXT step size
+numDig          VAR     Nib             ' digits in aNum
+
+
+Setup:
+  stpSz = 2
+
+Main:
+  FOR aNum = 0 TO 15000 STEP stpSz
+    LOOKDOWN aNum, <[0, 10, 100, 1000, 10000, 65535], numDig
+    ' right-justify output
+    DEBUG "aNum = ", REP " "\(5-numDig), DEC aNum, TAB,
+          "Digits = ", DEC numDig, CR
+    PAUSE 250
+    LOOKDOWN aNum, <[0, 10, 100, 1000, 10000, 65535], stpSz
+    LOOKUP stpSz, [2, 2, 5, 25, 250, 500, 1000], stpSz
+  NEXT
+  END

@@ -1,0 +1,13 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+DEBUG "Program Running!", CR
+PAUSE 1000
+GOSUB My_Subroutine
+DEBUG "After subroutine", CR
+END
+
+My_Subroutine:
+  DEBUG "Command in subroutine", CR
+  PAUSE 1000
+  RETURN

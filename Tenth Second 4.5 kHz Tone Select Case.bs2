@@ -1,0 +1,12 @@
+' Tenth Second 4.5 kHz Tone Select Case.bs2
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+#SELECT $STAMP
+  #CASE BS2
+    FREQOUT 6, 100, 4500
+  #CASE BS2SX
+    FREQOUT 6, 250, 1800
+#ENDSELECT
+
+END

@@ -1,0 +1,25 @@
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+'Script to test the servo motors by putting in the desired pulse
+'amount in scale of 2 microseconds'
+
+'EXAMPLE: 750 = 750*2us = 1500 us = 1.5 ms
+
+DEBUG "Program Running!", CR
+
+p13vel VAR Word
+p12vel VAR Word
+
+DEBUG "Enter P13 wheel pulse", CR
+DEBUGIN NUM p13vel
+DEBUG CLS, "P13 velocity has been set to: ", DEC p13vel, CR
+
+DEBUG "Enter P12 wheel pulse", CR
+DEBUGIN NUM p12vel
+DEBUG CLS, "P12 velocity has been set to: ", DEC p12vel, CR
+
+DO
+  PULSOUT 13, p13vel
+  PULSOUT 12, p12vel
+LOOP

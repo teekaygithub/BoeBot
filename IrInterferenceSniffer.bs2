@@ -1,0 +1,22 @@
+' Robotics with the Boe-Bot - IrInterferenceSniffer.bs2
+' Test flourescent lights, infrared remotes, and other sources
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+counter   VAR      Nib
+
+DEBUG "IR interference not detected...", CR
+
+DO
+  IF (IN0 = 0) OR (IN9 = 0) THEN
+    DEBUG "Interference detected!!!", CR
+    FOR counter = 1 TO 5
+      HIGH 1
+      HIGH 10
+      FREQOUT 4, 50, 4000
+      LOW 1
+      LOW 10
+      PAUSE 20
+    NEXT
+  ENDIF
+LOOP

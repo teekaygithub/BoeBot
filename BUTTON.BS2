@@ -1,0 +1,30 @@
+' BUTTON.BS2
+' Connect an active-low circuit to pin P0 of the BS2. When you press the
+' button, the DEBUG screen will display an asterisk (*). The program, as
+' shown below, will print an asterisk at the first button press, then
+' delay approximately one second (200 x 5 ms PAUSE) before auto-repeating
+' at a rate of approximately 100 ms (5 x 20 ms).  Feel free to modify the
+' program to see the effects of your changes on the way BUTTON responds.
+
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+Btn             PIN     0
+
+btnWrk          VAR     Byte
+
+
+Main:
+  ' Try changing the Delay value (255) in BUTTON to see the effect of
+  ' its modes: 0 = no delay; 1-254 = varying delays before auto-repeat;
+  ' 255 = no auto-repeat (only one action per button press)
+  '
+  ' The BUTTON instruction will cause the program to branch to
+  ' No_Press unless P0 = 0
+
+  PAUSE 5
+  BUTTON Btn, 0, 200, 20, btnWrk, 0, No_Press
+  DEBUG "*"
+
+No_Press:
+  GOTO Main

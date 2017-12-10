@@ -1,0 +1,15 @@
+' Robotics with the Boe-Bot - TestRightIr.bs2
+' Test IR object detection circuits, IR LED to P8 and detector to P9.
+
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+irDetectRight     VAR       Bit
+
+DO
+  FREQOUT 2, 1, 38500
+  irDetectRight = IN0
+
+  DEBUG HOME, "irDetectRight = ", BIN1 irDetectRight
+  PAUSE 100
+LOOP

@@ -1,0 +1,12 @@
+' STOP.BS2
+' This program is similar to SLEEP.BS2 except that the LED will not blink
+' since the BASIC Stamp does not go into low power mode.  Use the circuit
+' shown in the description of the SLEEP command for this example.
+
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+
+Main:
+  LOW 0                                 ' turn LED on
+  STOP                                  ' stop program

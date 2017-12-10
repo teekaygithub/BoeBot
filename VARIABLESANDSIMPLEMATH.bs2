@@ -1,0 +1,31 @@
+' Declare variables and use them to solve an arithmetic problem.
+' {$STAMP BS2}
+' {$PBASIC 2.5}
+
+DEBUG "Program Running!", CR
+
+value          VAR    Word
+anotherValue   VAR    Word
+
+value = 500
+anotherValue = 2000
+
+DEBUG "STEP 1: SIMPLE ARITHMETIC", CR
+DEBUG ? Value
+DEBUG ? anotherValue
+DEBUG CR
+
+value = 10*anotherValue
+
+DEBUG ? Value
+DEBUG ? anotherValue , CR
+
+' Negative numbers
+Value = 500
+Value = Value - anotherValue     ' Should be -1500 now
+
+DEBUG "STEP 2: DISPLAYING NEGATIVE NUMBERS", CR
+DEBUG "value = ", SDEC Value, CR ' Display values again
+DEBUG "value = ", Value, CR
+
+END

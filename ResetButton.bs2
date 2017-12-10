@@ -1,0 +1,25 @@
+' ResetButton.bs2
+' {$STAMP BS2}                      ' Select BS2 as target module
+' {$PBASIC 2.5}                     ' Select PBASIC 2.5 as language
+
+eeVal VAR Byte                      ' EEPROM value variable
+DATA 255                            ' Pre-initialize EEPROM address 0 to 255
+
+PAUSE 1000                          ' Always wait 1 s before advancing EEPROM
+
+READ 0, eeVal                       ' Fetch value from EEPROM address 0
+eeval = eeVal + 1                   ' Add 1 to eeVal
+eeval = eeval // 2                  ' Take remainder of eeVal / 2
+WRITE 0, eeVal                      ' Write new result back to EEPROM
+
+ON eeVal GOTO Playback, Record      ' Use eeVal result to select routine
+
+Playback:                           ' Playback label
+  DEBUG "Playing back..."           ' Debug message indicating playback started
+  ' Report logged data code here    ' Your playback code goes here
+  END                               ' End, don't record after playback
+
+Record:                             ' Record label
+  DEBUG "Recording..."              ' Message indicates recording started
+  ' Datalogging code here           ' Your datalogging code goes here
+  END
